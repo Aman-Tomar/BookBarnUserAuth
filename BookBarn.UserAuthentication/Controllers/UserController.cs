@@ -20,6 +20,14 @@ namespace BookBarn.UserAuthentication.Controllers
             this._tokenService = tokenService;
         }
 
+        // Health Check
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> HealthCheck()
+        {
+            return Ok("Good Health");
+        }
+
         [HttpPost("Register")]
         [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]

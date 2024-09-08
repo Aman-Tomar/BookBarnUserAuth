@@ -15,7 +15,8 @@ namespace BookBarn.UserAuthentication
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add envirnoments variable
+            builder.Configuration.AddEnvironmentVariables();
 
             // Configure Database
             string conncetionString = builder.Configuration.GetConnectionString("Default");
@@ -68,6 +69,14 @@ namespace BookBarn.UserAuthentication
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            // Add cors
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             app.UseHttpsRedirection();
 
